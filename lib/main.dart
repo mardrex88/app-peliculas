@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
       title: 'Peliculas',
       initialRoute: 'home',
       routes: {
-        'home': (_) => HomeScreen(),
+        'home': (_) => const HomeScreen(),
         'details': (_) => DetailsScreen(),
       },
       theme: ThemeData.light().copyWith(
           primaryColor: Colors.red,
-          appBarTheme: AppBarTheme(color: Colors.red)),
+          appBarTheme: const AppBarTheme(color: Colors.red)),
     );
   }
 }
