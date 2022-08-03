@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //TODO: Cambiar por el argumento que se le pase a la pantalla
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
 
     return Scaffold(
@@ -77,13 +76,15 @@ class _PosterAndTitle extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                placeholder: AssetImage('assets/img/no-image.jpg'),
-                image: NetworkImage(movie.fullPosterImg),
-                height: 150,
-                width: 110,
+            Hero(
+              tag: movie.heroId!,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/img/no-image.jpg'),
+                  image: NetworkImage(movie.fullPosterImg),
+                  height: 150,
+                ),
               ),
             ),
             SizedBox(width: 20),
