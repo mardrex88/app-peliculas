@@ -14,7 +14,6 @@ class MoviesProvider extends ChangeNotifier {
   int popularPage = 0;
 
   MoviesProvider() {
-    print('Movies Provider Constructor');
     getOnDisplayMovies();
     getOnPopularMovies();
   }
@@ -40,11 +39,12 @@ class MoviesProvider extends ChangeNotifier {
 
   getOnPopularMovies() async {
     popularPage++;
+
     final response = await _getJsonData('3/movie/popular', popularPage);
 
     final popularMoviesResponse = PopularMoviesResponse.fromJson(response);
 
-    onPopularMovies = popularMoviesResponse.results;
+    onPopularMovies.addAll(popularMoviesResponse.results);
 
     notifyListeners();
   }
