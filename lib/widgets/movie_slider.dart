@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 
 class MovieSlider extends StatelessWidget {
   final List<Movie> movies;
-  final String titleWidget;
+  final String? titleWidget;
 
-  const MovieSlider(
-      {super.key, required this.movies, required this.titleWidget});
+  const MovieSlider({super.key, required this.movies, this.titleWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +15,15 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              titleWidget,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          if (titleWidget != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                titleWidget!,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
           SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
