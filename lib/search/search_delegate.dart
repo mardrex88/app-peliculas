@@ -33,18 +33,15 @@ class MovieSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty) {
-      return const Center(
-        child: Icon(
-          Icons.movie_creation_outlined,
-          size: 100,
-        ),
-      );
+      return _emptyContainer();
     }
 
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
 
-    return FutureBuilder(
-        future: moviesProvider.searchMovies(query),
+    moviesProvider.getSuggestionsByQuery(query);
+
+    return StreamBuilder(
+        stream: moviesProvider.suggestionStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) return _emptyContainer();
 
@@ -78,7 +75,7 @@ class _MovieItem extends StatelessWidget {
         leading: Hero(
           tag: movie.heroId!,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             child: FadeInImage(
               placeholder: const AssetImage('assets/img/no-image.jpg'),
               image: NetworkImage(movie.fullPosterImg),
