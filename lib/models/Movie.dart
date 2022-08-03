@@ -33,9 +33,14 @@ class Movie {
   double voteAverage;
   int voteCount;
 
-  factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
+  get fullPosterImg {
+    if (posterPath == null) {
+      return null;
+    }
+    return 'https://image.tmdb.org/t/p/w500${posterPath}';
+  }
 
-  String toJson() => json.encode(toMap());
+  factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
   factory Movie.fromMap(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
