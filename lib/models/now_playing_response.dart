@@ -4,18 +4,18 @@
 
 import 'dart:convert';
 
-import 'package:app/models/Movie.dart';
+import 'package:app/models/models.dart';
 
 class NowPlayingResponse {
   NowPlayingResponse({
-    required this.dates,
+    this.dates,
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  Dates dates;
+  Dates? dates;
   int page;
   List<Movie> results;
   int totalPages;
@@ -34,7 +34,7 @@ class NowPlayingResponse {
       );
 
   Map<String, dynamic> toMap() => {
-        "dates": dates.toMap(),
+        "dates": dates?.toMap(),
         "page": page,
         "results": List<dynamic>.from(results.map((x) => x.toMap())),
         "total_pages": totalPages,

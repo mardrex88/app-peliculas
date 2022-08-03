@@ -1,7 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
-import '../models/Movie.dart';
+import '../models/movie.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<Movie> movies;
@@ -22,8 +22,6 @@ class CardSwiper extends StatelessWidget {
           itemHeight: size.height * 0.4,
           itemBuilder: (_, index) {
             final movie = movies[index];
-
-            print(movie.fullPosterImg);
 
             return GestureDetector(
               onTap: () {

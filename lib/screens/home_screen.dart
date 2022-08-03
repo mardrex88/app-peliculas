@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:app/widgets/widgets.dart';
-import '../providers/movies_provider.dart';
+import 'package:app/providers/providers.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,7 +33,10 @@ class HomeScreen extends StatelessWidget {
               CardSwiper(
                 movies: moviesProvider.onDisplayMovies,
               ),
-              MovieSlider()
+              MovieSlider(
+                movies: moviesProvider.onPopularMovies,
+                titleWidget: 'Populares!',
+              ),
             ],
           ),
         ));
